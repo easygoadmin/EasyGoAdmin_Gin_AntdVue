@@ -1,7 +1,7 @@
-# EasyGoAdmin_Gin_AntdVue
+# EasyGoAdmin_Gin_EleVue
 
 #### Description
-是一款基于Golang、Gin、Vue、AntDesign、MySQL等技术栈开发平台框架，拥有完善的(RBAC)权限架构和基础核心管理模块，为了缩短研发周期，系统框架集成了代码生成器，内置平台自定义研发的模板引擎，可以一键CRUD生成整个模块的全部代码，本框架为一站式系统框架开发平台，可以帮助开发者提升开发效率、降低研发成本，同时便于后期的系统维护升级。
+是一款基于Golang、Gin、Vue、ElementUI、MySQL等技术栈开发平台框架，拥有完善的(RBAC)权限架构和基础核心管理模块，为了缩短研发周期，系统框架集成了代码生成器，内置平台自定义研发的模板引擎，可以一键CRUD生成整个模块的全部代码，本框架为一站式系统框架开发平台，可以帮助开发者提升开发效率、降低研发成本，同时便于后期的系统维护升级。
 
 #### Software Architecture
 Software architecture description
