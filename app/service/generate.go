@@ -423,6 +423,9 @@ func GenerateIndex(dataList *common.ArrayList, moduleName string, moduleTitle st
 		if _, ok := item["columnValue"]; ok && item["columnValue"] != "" {
 			// 加入查询条件数组
 			queryList = append(queryList, item)
+
+			// 下拉单选组件
+			item["columnWidget"] = `{{ ['` + gconv.String(item["columnSelectValue"]) + `'][record.` + gconv.String(columnName) + ` - 1] }}`
 		}
 		// 移除部分非表单字段
 		if columnName == "id" ||
@@ -449,7 +452,7 @@ func GenerateIndex(dataList *common.ArrayList, moduleName string, moduleTitle st
 			return err
 		}
 		// 文件路径
-		fileName := strings.Join([]string{curDir, "/evui/src/views/tool/example/", moduleName, "/index.vue"}, "")
+		fileName := strings.Join([]string{curDir, "/avui/src/views/tool/example/", moduleName, "/index.vue"}, "")
 		// 删除现有文件
 		if err := gfile.Remove(fileName); err != nil {
 			return err
@@ -547,7 +550,7 @@ func GenerateEdit(dataList *common.ArrayList, moduleName string, moduleTitle str
 			return err
 		}
 		// 文件路径
-		fileName := strings.Join([]string{curDir, "/evui/src/views/tool/example/", moduleName, "/" + moduleName + "-edit.vue"}, "")
+		fileName := strings.Join([]string{curDir, "/avui/src/views/tool/example/", moduleName, "/" + moduleName + "-edit.vue"}, "")
 		// 删除现有文件
 		if err := gfile.Remove(fileName); err != nil {
 			return err
@@ -577,7 +580,7 @@ func GeneratePermission(modelName string, modelTitle string, userId int) error {
 	// 创建菜单
 	var entity model.Menu
 	entity.Title = modelTitle
-	entity.Icon = "el-icon-setting"
+	entity.Icon = "AntDesignOutlined"
 	entity.Path = "/tool/example/" + modelName
 	entity.Component = entity.Path
 	entity.ParentId = 164
@@ -832,6 +835,8 @@ func GetColumnList(tableName string) (*common.ArrayList, error) {
 			columnValueList := make(map[int]string)
 			// 实例化字段描述文字数组
 			columnSwitchValue := make([]string, 0)
+			// 下拉选择列表解析参数
+			columnSelectValue := make([]string, 0)
 			for _, v := range commentArr {
 				// 正则提取数字键
 				regexp := regexp.MustCompile(`[0-9]+`)
@@ -846,10 +851,13 @@ func GetColumnList(tableName string) (*common.ArrayList, error) {
 				columnValueList[gconv.Int(key)] = value
 				// 开关专用参数值
 				columnSwitchValue = append(columnSwitchValue, value)
+				// 下拉列表解析参数
+				columnSelectValue = append(columnSelectValue, value)
 			}
 			// 字符串逗号拼接
 			item["columnValue"] = gstr.Join(columnValue, ",")
 			item["columnValueList"] = columnValueList
+			item["columnSelectValue"] = gstr.Join(columnSelectValue, "','")
 
 			// 开关判断
 			if columnName == "status" || gstr.SubStr(columnName, 0, 3) == "is_" {

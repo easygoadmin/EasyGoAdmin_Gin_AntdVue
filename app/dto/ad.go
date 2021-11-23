@@ -44,7 +44,8 @@ type AdAddReq struct {
 	StartTime   int64  `form:"start_time"  binding:"required"` // 开始时间
 	EndTime     int64  `form:"end_time"    binding:"required"` // 结束时间
 	Status      int    `form:"status"      binding:"required"` // 状态：1在用 2停用
-	Sort        int    `form:"sort"        binding:"required"` // 排序
+	Sort        int    `form:"sort"`                           // 排序
+	Note        string `form:"note"`                           // 备注
 }
 
 // 更新广告
@@ -62,7 +63,8 @@ type AdUpdateReq struct {
 	StartTime   int64  `form:"start_time"  binding:"required"` // 开始时间
 	EndTime     int64  `form:"end_time"    binding:"required"` // 结束时间
 	Status      int    `form:"status"      binding:"required"` // 状态：1在用 2停用
-	Sort        int    `form:"sort"        binding:"required"` // 排序
+	Sort        int    `form:"sort"`                           // 排序
+	Note        string `form:"note"`                           // 备注
 }
 
 // 设置状态

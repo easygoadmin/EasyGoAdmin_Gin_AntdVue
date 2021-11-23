@@ -20,7 +20,5 @@ main
 .vscode
 go.sum
 
-document/easygoadmin.gin.ele.sql
-
 .svn
 avui/

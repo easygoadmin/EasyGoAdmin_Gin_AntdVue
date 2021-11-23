@@ -18,7 +18,7 @@
 /**
  * 演示一管理-服务类
  * @author 半城风雨
- * @since 2021-11-19
+ * @since 2021-11-23
  * @File : example
  */
 package service
@@ -62,12 +62,18 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 	for _, v := range list {
 		item := vo.ExampleInfoVo{}
 		item.Example = v
-
+		
+		
+		
 		// 头像
 		if v.Avatar != "" {
 			item.Avatar = utils.GetImageUrl(v.Avatar)
 		}
-
+		
+		
+		
+		
+		
 		result = append(result, item)
 	}
 
@@ -76,12 +82,9 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 }
 
 func (s *exampleService) Add(req *dto.ExampleAddReq, userId int) (int64, error) {
-	if utils.AppDebug() {
-		return 0, errors.New("演示环境，暂无权限操作")
-	}
 	// 实例化对象
 	var entity model.Example
-
+	
 	entity.Name = req.Name
 	// 头像处理
 	if req.Avatar != "" {
@@ -104,16 +107,13 @@ func (s *exampleService) Add(req *dto.ExampleAddReq, userId int) (int64, error) 
 }
 
 func (s *exampleService) Update(req *dto.ExampleUpdateReq, userId int) (int64, error) {
-	if utils.AppDebug() {
-		return 0, errors.New("演示环境，暂无权限操作")
-	}
 	// 查询记录
 	entity := &model.Example{Id: req.Id}
 	has, err := entity.Get()
 	if err != nil || !has {
 		return 0, errors.New("记录不存在")
 	}
-
+	
 	entity.Name = req.Name
 	// 头像处理
 	if req.Avatar != "" {
@@ -136,9 +136,6 @@ func (s *exampleService) Update(req *dto.ExampleUpdateReq, userId int) (int64, e
 
 // 删除
 func (s *exampleService) Delete(ids string) (int64, error) {
-	if utils.AppDebug() {
-		return 0, errors.New("演示环境，暂无权限操作")
-	}
 	// 记录ID
 	idsArr := strings.Split(ids, ",")
 	if len(idsArr) == 1 {
@@ -155,10 +152,15 @@ func (s *exampleService) Delete(ids string) (int64, error) {
 	}
 }
 
+
+
+
+
+
+
+
+
 func (s *exampleService) Status(req *dto.ExampleStatusReq, userId int) (int64, error) {
-	if utils.AppDebug() {
-		return 0, errors.New("演示环境，暂无权限操作")
-	}
 	// 查询记录是否存在
 	info := &model.Example{Id: req.Id}
 	has, err := info.Get()
@@ -175,10 +177,11 @@ func (s *exampleService) Status(req *dto.ExampleStatusReq, userId int) (int64, e
 	return entity.Update()
 }
 
+
+
+
+
 func (s *exampleService) IsVip(req *dto.ExampleIsVipReq, userId int) (int64, error) {
-	if utils.AppDebug() {
-		return 0, errors.New("演示环境，暂无权限操作")
-	}
 	// 查询记录是否存在
 	info := &model.Example{Id: req.Id}
 	has, err := info.Get()
@@ -194,3 +197,7 @@ func (s *exampleService) IsVip(req *dto.ExampleIsVipReq, userId int) (int64, err
 	entity.UpdateTime = time.Now().Unix()
 	return entity.Update()
 }
+
+
+
+

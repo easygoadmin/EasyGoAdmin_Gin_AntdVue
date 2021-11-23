@@ -18,7 +18,7 @@
 /**
  * 演示一管理-控制器
  * @author 半城风雨
- * @since 2021-11-19
+ * @since 2021-11-23
  * @File : example
  */
 package controller
@@ -150,6 +150,14 @@ func (c *exampleCtl) Delete(ctx *gin.Context) {
 	})
 }
 
+
+
+
+
+
+
+
+
 func (c *exampleCtl) Status(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.ExampleStatusReq
@@ -177,6 +185,10 @@ func (c *exampleCtl) Status(ctx *gin.Context) {
 	})
 }
 
+
+
+
+
 func (c *exampleCtl) IsVip(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.ExampleIsVipReq
@@ -203,3 +215,7 @@ func (c *exampleCtl) IsVip(ctx *gin.Context) {
 		Msg:  "设置成功",
 	})
 }
+
+
+
+

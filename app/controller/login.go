@@ -46,7 +46,7 @@ func (c *loginCtl) Login(ctx *gin.Context) {
 			// 返回错误信息
 			ctx.JSON(http.StatusOK, common.JsonResult{
 				Code: -1,
-				Msg:  err.Error(),
+				Msg:  "登录错误",
 			})
 			return
 		}

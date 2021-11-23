@@ -68,17 +68,21 @@ func (c *configWeb) Index(ctx *gin.Context) {
 				// 复选框
 				re := regexp.MustCompile(`\r?\n`)
 				list := gstr.Split(re.ReplaceAllString(v.Options, "|"), "|")
-				optionsList := make(map[string]string)
+				optionsList := make([]map[string]string, 0)
 				for _, val := range list {
 					re2 := regexp.MustCompile(`:|：|\s+`)
 					item := gstr.Split(re2.ReplaceAllString(val, "|"), "|")
-					optionsList[item[0]] = item[1]
+
+					// 参数重组
+					valList := make(map[string]string)
+					valList["label"] = item[1]
+					valList["value"] = item[0]
+					optionsList = append(optionsList, valList)
 				}
 				// 选择项
 				item["optionsList"] = optionsList
 				// 选择值
 				item["value"] = gstr.Split(v.Value, ",")
-
 			} else if v.Type == "radio" {
 				// 单选框
 				re := regexp.MustCompile(`\r?\n`)

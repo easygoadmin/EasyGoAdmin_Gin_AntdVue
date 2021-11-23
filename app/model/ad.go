@@ -37,6 +37,7 @@ type Ad struct {
 	ViewNum     int    `json:"viewNum" xorm:"not null default 0 comment('点击率') INT(10)"`
 	Status      int    `json:"status" xorm:"not null default 1 comment('状态：1在用 2停用') TINYINT(1)"`
 	Sort        int    `json:"sort" xorm:"not null default 125 comment('排序') SMALLINT(5)"`
+	Note        string `json:"note" xorm:"default 'NULL' comment('备注') VARCHAR(255)"`
 	CreateUser  int    `json:"create_user" xorm:"not null default 0 comment('添加人') INT(10)"`
 	CreateTime  int64  `json:"create_time" xorm:"not null comment('添加时间') DATETIME"`
 	UpdateUser  int    `json:"update_user" xorm:"default 0 comment('更新人') INT(10)"`

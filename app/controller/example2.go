@@ -18,7 +18,7 @@
 /**
  * 演示二管理-控制器
  * @author 半城风雨
- * @since 2021-11-20
+ * @since 2021-11-23
  * @File : example2
  */
 package controller
@@ -150,6 +150,10 @@ func (c *example2Ctl) Delete(ctx *gin.Context) {
 	})
 }
 
+
+
+
+
 func (c *example2Ctl) Status(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.Example2StatusReq
@@ -176,3 +180,7 @@ func (c *example2Ctl) Status(ctx *gin.Context) {
 		Msg:  "设置成功",
 	})
 }
+
+
+
+
