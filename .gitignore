@@ -20,5 +20,7 @@ main
 .vscode
 go.sum
 
+document/easygoadmin.gin.antd.sql
+
 .svn
 avui/

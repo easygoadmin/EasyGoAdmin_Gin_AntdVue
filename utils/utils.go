@@ -221,7 +221,7 @@ func SaveImage(url string, dirname string) (string, error) {
 			// 临时图片
 
 			// 创建目录
-			dirPath := ImagePath() + "/" + dirname + "/" + time.Now().Format("Ymd")
+			dirPath := ImagePath() + "/" + dirname + "/" + time.Now().Format("20060102")
 			if !CreateDir(dirPath) {
 				return "", errors.New("文件目录创建失败")
 			}
