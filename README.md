@@ -36,7 +36,7 @@
 + 案例演示：常规代码生成器一键生成后的演示案例。
 
 ## 👷 开发者信息
-* 系统名称：EasyGoAdmin敏捷开发框架Gin+EleVue版本
+* 系统名称：EasyGoAdmin敏捷开发框架Gin+AntdVue版本
 * 作者：半城风雨
 * 作者QQ：[1260211623](http://wpa.qq.com/msgrd?v=3&amp;uin=1260211623&amp;site=qq&amp;menu=yes)
 * 官网网址：[http://www.easygoadmin.vip](http://www.easygoadmin.vip)
