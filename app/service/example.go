@@ -1,7 +1,7 @@
 // +----------------------------------------------------------------------
 // | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
 // +----------------------------------------------------------------------
-// | 版权所有 2019~2021 EasyGoAdmin深圳研发中心
+// | 版权所有 2019~2022 EasyGoAdmin深圳研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
@@ -62,18 +62,12 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 	for _, v := range list {
 		item := vo.ExampleInfoVo{}
 		item.Example = v
-		
-		
-		
+
 		// 头像
 		if v.Avatar != "" {
 			item.Avatar = utils.GetImageUrl(v.Avatar)
 		}
-		
-		
-		
-		
-		
+
 		result = append(result, item)
 	}
 
@@ -84,7 +78,7 @@ func (s *exampleService) GetList(req *dto.ExamplePageReq) ([]vo.ExampleInfoVo, i
 func (s *exampleService) Add(req *dto.ExampleAddReq, userId int) (int64, error) {
 	// 实例化对象
 	var entity model.Example
-	
+
 	entity.Name = req.Name
 	// 头像处理
 	if req.Avatar != "" {
@@ -113,7 +107,7 @@ func (s *exampleService) Update(req *dto.ExampleUpdateReq, userId int) (int64, e
 	if err != nil || !has {
 		return 0, errors.New("记录不存在")
 	}
-	
+
 	entity.Name = req.Name
 	// 头像处理
 	if req.Avatar != "" {
@@ -152,14 +146,6 @@ func (s *exampleService) Delete(ids string) (int64, error) {
 	}
 }
 
-
-
-
-
-
-
-
-
 func (s *exampleService) Status(req *dto.ExampleStatusReq, userId int) (int64, error) {
 	// 查询记录是否存在
 	info := &model.Example{Id: req.Id}
@@ -177,10 +163,6 @@ func (s *exampleService) Status(req *dto.ExampleStatusReq, userId int) (int64, e
 	return entity.Update()
 }
 
-
-
-
-
 func (s *exampleService) IsVip(req *dto.ExampleIsVipReq, userId int) (int64, error) {
 	// 查询记录是否存在
 	info := &model.Example{Id: req.Id}
@@ -197,7 +179,3 @@ func (s *exampleService) IsVip(req *dto.ExampleIsVipReq, userId int) (int64, err
 	entity.UpdateTime = time.Now().Unix()
 	return entity.Update()
 }
-
-
-
-

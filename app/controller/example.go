@@ -1,7 +1,7 @@
 // +----------------------------------------------------------------------
 // | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
 // +----------------------------------------------------------------------
-// | 版权所有 2019~2021 EasyGoAdmin深圳研发中心
+// | 版权所有 2019~2022 EasyGoAdmin深圳研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.easygoadmin.vip
 // +----------------------------------------------------------------------
@@ -150,14 +150,6 @@ func (c *exampleCtl) Delete(ctx *gin.Context) {
 	})
 }
 
-
-
-
-
-
-
-
-
 func (c *exampleCtl) Status(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.ExampleStatusReq
@@ -185,10 +177,6 @@ func (c *exampleCtl) Status(ctx *gin.Context) {
 	})
 }
 
-
-
-
-
 func (c *exampleCtl) IsVip(ctx *gin.Context) {
 	// 参数绑定
 	var req *dto.ExampleIsVipReq
@@ -215,7 +203,3 @@ func (c *exampleCtl) IsVip(ctx *gin.Context) {
 		Msg:  "设置成功",
 	})
 }
-
-
-
-
