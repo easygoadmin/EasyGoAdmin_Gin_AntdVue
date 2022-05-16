@@ -40,7 +40,7 @@ type MemberPageReq struct {
 // 添加会员
 type MemberAddReq struct {
 	Username    string   `form:"username,unique" binding:"required"` // 用户名
-	Password    string   `form:"password" binding:"required"`        // 登录密码
+	Password    string   `form:"password"`                           // 登录密码
 	MemberLevel int      `form:"member_level" binding:"required"`    // 会员等级
 	Realname    string   `form:"realname" binding:"required"`        // 真实姓名
 	Nickname    string   `form:"nickname" binding:"required"`        // 用户昵称
@@ -60,7 +60,7 @@ type MemberAddReq struct {
 type MemberUpdateReq struct {
 	Id          int      `form:"id" binding:"required"`
 	Username    string   `form:"username,unique" binding:"required"` // 用户名
-	Password    string   `form:"password" binding:"required"`        // 登录密码
+	Password    string   `form:"password"`                           // 登录密码
 	MemberLevel int      `form:"member_level" binding:"required"`    // 会员等级
 	Realname    string   `form:"realname" binding:"required"`        // 真实姓名
 	Nickname    string   `form:"nickname" binding:"required"`        // 用户昵称

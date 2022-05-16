@@ -138,6 +138,10 @@ Iris+AntdVue前后端分离版 | 采用Iris、Vue、AntDesign等框架研发前�
 
 ![效果图](./public/uploads/demo/22.png)
 
+![效果图](./public/uploads/demo/23.png)
+
+![效果图](./public/uploads/demo/24.png)
+
 ## ✨  特别鸣谢
 感谢[Gin](https://gin-gonic.com/)、[Xorm](https://xorm.io/)、[VueJs](https://cn.vuejs.org/)、[AntDesign](https://2x.antdv.com/docs/vue/introduce-cn/)等优秀开源项目。
 
