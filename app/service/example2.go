@@ -1,5 +1,13 @@
 // +----------------------------------------------------------------------
-// | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
+// | EasyGoAdmin敏捷开发框架 [ 赋能开发者，助力企业发展 ]
+// +----------------------------------------------------------------------
+// | 版权所有 2019~2022 深圳EasyGoAdmin研发中心
+// +----------------------------------------------------------------------
+// | Licensed LGPL-3.0 EasyGoAdmin并不是自由软件，未经许可禁止去掉相关版权
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.easygoadmin.vip
+// +----------------------------------------------------------------------
+// | Author: @半城风雨 团队荣誉出品
 // +----------------------------------------------------------------------
 // | 版权和免责声明:
 // | 本团队对该软件框架产品拥有知识产权（包括但不限于商标权、专利权、著作权、商业秘密等）
@@ -16,7 +24,7 @@
 /**
  * 演示二管理-服务类
  * @author 半城风雨
- * @since 2021-11-23
+ * @since 2022-05-16
  * @File : example2
  */
 package service
@@ -41,10 +49,21 @@ func (s *example2Service) GetList(req *dto.Example2PageReq) ([]vo.Example2InfoVo
 	// 初始化查询实例
 	query := utils.XormDb.Where("mark=1")
 	if req != nil {
-		// 职级名称查询
+		
+		// 演示名称
+		
 		if req.Name != "" {
-			query = query.Where("name like ?", "%"+req.Name+"%")
+			query = query.Where("name like ?", req.Name)
 		}
+		
+	
+		// 状态：1正常 2停用
+		
+		if req.Status > 0 {
+			query = query.Where("status=?", req.Status)
+		}
+		
+	
 	}
 	// 排序
 	query = query.Asc("sort")
@@ -60,7 +79,10 @@ func (s *example2Service) GetList(req *dto.Example2PageReq) ([]vo.Example2InfoVo
 	for _, v := range list {
 		item := vo.Example2InfoVo{}
 		item.Example2 = v
-
+		
+		
+		
+		
 		result = append(result, item)
 	}
 
@@ -71,7 +93,7 @@ func (s *example2Service) GetList(req *dto.Example2PageReq) ([]vo.Example2InfoVo
 func (s *example2Service) Add(req *dto.Example2AddReq, userId int) (int64, error) {
 	// 实例化对象
 	var entity model.Example2
-
+	
 	entity.Name = req.Name
 	entity.Status = req.Status
 	entity.Sort = req.Sort
@@ -89,7 +111,7 @@ func (s *example2Service) Update(req *dto.Example2UpdateReq, userId int) (int64,
 	if err != nil || !has {
 		return 0, errors.New("记录不存在")
 	}
-
+	
 	entity.Name = req.Name
 	entity.Status = req.Status
 	entity.Sort = req.Sort
@@ -117,6 +139,10 @@ func (s *example2Service) Delete(ids string) (int64, error) {
 	}
 }
 
+
+
+
+
 func (s *example2Service) Status(req *dto.Example2StatusReq, userId int) (int64, error) {
 	// 查询记录是否存在
 	info := &model.Example2{Id: req.Id}
@@ -133,3 +159,7 @@ func (s *example2Service) Status(req *dto.Example2StatusReq, userId int) (int64,
 	entity.UpdateTime = time.Now().Unix()
 	return entity.Update()
 }
+
+
+
+

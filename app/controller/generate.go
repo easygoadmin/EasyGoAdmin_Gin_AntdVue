@@ -1,5 +1,13 @@
 // +----------------------------------------------------------------------
-// | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
+// | EasyGoAdmin敏捷开发框架 [ 赋能开发者，助力企业发展 ]
+// +----------------------------------------------------------------------
+// | 版权所有 2019~2022 深圳EasyGoAdmin研发中心
+// +----------------------------------------------------------------------
+// | Licensed LGPL-3.0 EasyGoAdmin并不是自由软件，未经许可禁止去掉相关版权
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.easygoadmin.vip
+// +----------------------------------------------------------------------
+// | Author: @半城风雨 团队荣誉出品
 // +----------------------------------------------------------------------
 // | 版权和免责声明:
 // | 本团队对该软件框架产品拥有知识产权（包括但不限于商标权、专利权、著作权、商业秘密等）
@@ -28,6 +36,8 @@ import (
 	"easygoadmin/utils/gconv"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 // 控制器管理对象
@@ -66,8 +76,17 @@ func (c *generateCtl) List(ctx *gin.Context) {
 }
 
 func (c *generateCtl) Generate(ctx *gin.Context) {
+	// 生成对象
+	var req dto.GenerateFileReq
+	if err := ctx.ShouldBind(&req); err != nil {
+		ctx.JSON(http.StatusOK, common.JsonResult{
+			Code: -1,
+			Msg:  err.Error(),
+		})
+		return
+	}
 	// 调用生成方法
-	err := service.Generate.Generate(ctx)
+	err := service.Generate.Generate(req, ctx)
 	if err != nil {
 		ctx.JSON(http.StatusOK, common.JsonResult{
 			Code: -1,
@@ -80,5 +99,39 @@ func (c *generateCtl) Generate(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, common.JsonResult{
 		Code: 0,
 		Msg:  "模块生成成功",
+	})
+}
+
+func (c *generateCtl) BatchGenerate(ctx *gin.Context) {
+	// 生成对象
+	var req dto.BatchGenerateFileReq
+	// 参数绑定
+	if err := ctx.ShouldBind(&req); err != nil {
+		ctx.JSON(http.StatusOK, common.JsonResult{
+			Code: -1,
+			Msg:  err.Error(),
+		})
+		return
+	}
+	// 参数分析
+	tableList := strings.Split(req.Tables, ",")
+	count := 0
+	for _, item := range tableList {
+		itemList := strings.Split(item, "|")
+		// 组装参数对象
+		var param dto.GenerateFileReq
+		param.Name = itemList[0]
+		param.Comment = itemList[1]
+		// 调用生成方法
+		err := service.Generate.Generate(param, ctx)
+		if err != nil {
+			continue
+		}
+		count++
+	}
+	// 返回结果
+	ctx.JSON(http.StatusOK, common.JsonResult{
+		Code: 0,
+		Msg:  "本次共生成【" + strconv.Itoa(count) + "】个模块文件",
 	})
 }

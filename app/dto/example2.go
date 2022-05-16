@@ -1,5 +1,13 @@
 // +----------------------------------------------------------------------
-// | EasyGoAdmin敏捷开发框架 [ EasyGoAdmin ]
+// | EasyGoAdmin敏捷开发框架 [ 赋能开发者，助力企业发展 ]
+// +----------------------------------------------------------------------
+// | 版权所有 2019~2022 深圳EasyGoAdmin研发中心
+// +----------------------------------------------------------------------
+// | Licensed LGPL-3.0 EasyGoAdmin并不是自由软件，未经许可禁止去掉相关版权
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.easygoadmin.vip
+// +----------------------------------------------------------------------
+// | Author: @半城风雨 团队荣誉出品
 // +----------------------------------------------------------------------
 // | 版权和免责声明:
 // | 本团队对该软件框架产品拥有知识产权（包括但不限于商标权、专利权、著作权、商业秘密等）
@@ -17,38 +25,63 @@ package dto
 
 // 分页查询
 type Example2PageReq struct {
-	Name string `form:"name"` // 演示名称
 
-	Status int `form:status` // 状态：1正常 2停用
+	
+	Name   string `form:"name"`   // 演示名称
+	
 
-	Page  int `form:"page"`  // 页码
-	Limit int `form:"limit"` // 每页数
+	
+	Status   int    `form:"status"`   // 状态：1正常 2停用
+	
+
+	Page  int    `form:"page"`  // 页码
+	Limit int    `form:"limit"` // 每页数
 }
 
 // 添加演示二
 type Example2AddReq struct {
-	Name string `form:"name"        binding:"required"` // 演示名称
 
-	Status int `form:"status"        binding:"required"` // 状态：1正常 2停用
+	
+	Name  string `form:"name" binding:"required"`   // 演示名称
+	
 
-	Sort int `form:"sort"        binding:"required"` // 排序号
+	
+	Status  int    `form:"status" binding:"required"`    // 状态：1正常 2停用
+	
+
+	
+	Sort  int `form:"sort" binding:"required"`   // 排序号
+	
 
 }
 
 // 编辑演示二
 type Example2UpdateReq struct {
-	Id int `form:"id" binding:"required"`
+	Id     int    `form:"id" binding:"required"`
 
-	Name string `form:"name"        binding:"required"` // 演示名称
+	
+	Name  string `form:"name" binding:"required"`   // 演示名称
+	
 
-	Status int `form:"status"        binding:"required"` // 状态：1正常 2停用
+	
+	Status  int    `form:"status" binding:"required"`    // 状态：1正常 2停用
+	
 
-	Sort int `form:"sort"        binding:"required"` // 排序号
+	
+	Sort  int `form:"sort" binding:"required"`   // 排序号
+	
 
 }
+
+
+
+
 
 // 设置状态
 type Example2StatusReq struct {
-	Id     int `form:"id" 				binding:"required"`
-	Status int `form:"status"    		binding:"required"`
+	Id     int `form:"id" binding:"required"`
+	Status int `form:"status" binding:"required"`
 }
+
+
+
